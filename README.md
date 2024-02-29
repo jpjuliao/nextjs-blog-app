@@ -1,8 +1,23 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 📝 Next.js Blog App
+
+Welcome to the Next.js Blog App! This application allows you to explore a collection of blog posts on various topics. This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+## Features
+
+- View a list of blog posts on the homepage.
+- Search for posts by title using the search bar.
+- Click on a post to view its details.
+- Simulated comment section on post detail page.
 
 ## Getting Started
 
-First, run the development server:
+First setup .env.local based on env-example:
+
+```
+cp env-example .env.local
+```
+
+then run the development server:
 
 ```bash
 npm run dev
