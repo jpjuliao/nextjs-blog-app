@@ -4,17 +4,7 @@ import Head from 'next/head';
 import Layout from '../../app/layout';
 import styles from '../../styles/post.module.css';
 import CommentSection from '../../components/CommentSection';
-
-interface Post {
-  userId: number;
-  id: number;
-  title: string;
-  body: string;
-}
-
-interface PostPageProps {
-  post: Post;
-}
+import {Post, PostPageProps} from '../../types'
 
 export const getServerSideProps: GetServerSideProps<PostPageProps> = async (context) => {
   const { params, req } = context;
@@ -31,10 +21,11 @@ export const getServerSideProps: GetServerSideProps<PostPageProps> = async (cont
 };
 
 const PostPage = ({ post }: PostPageProps) => {
-  const [comments, setComments] = useState<string[]>([]);
+  const [comments, setComments] = useState<{ 
+    name: string; comment: string }[]>([]);
 
-  const handleCommentSubmit = (comment: string) => {
-    setComments([...comments, comment]);
+  const handleCommentSubmit = (name: string, comment: string) => {
+    setComments([...comments, { name, comment }]);
   };
 
   if (!post) {
@@ -45,7 +36,7 @@ const PostPage = ({ post }: PostPageProps) => {
     <Layout>
       <Head>
         <title>{post.title}</title>
-        <meta name="description" content={post.body.slice(0, 150)} />
+        <meta name="description" content={post.body} />
       </Head>
       <div className={styles['post-container']}>
         <h1 className={styles['post-title']}>{post.title}</h1>
@@ -59,7 +50,8 @@ const PostPage = ({ post }: PostPageProps) => {
               <ul>
                 {comments.map((comment, index) => (
                   <li key={index} className="mb-2">
-                    {comment}
+                    <strong>{comment.name}: </strong>
+                    {comment.comment}
                   </li>
                 ))}
               </ul>

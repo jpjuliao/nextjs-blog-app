@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
-
-interface CommentSectionProps {
-  onCommentSubmit: (comment: string) => void;
-}
+import { CommentSectionProps } from '@/types'
 
 const CommentSection: React.FC<CommentSectionProps> = ({ onCommentSubmit }) => {
+  const [name, setName] = useState<string>('');
   const [comment, setComment] = useState<string>('');
 
   const handleSubmit = () => {
-    if (comment.trim() !== '') {
-      onCommentSubmit(comment);
+    if (name.trim() !== '' && comment.trim() !== '') {
+      onCommentSubmit(name, comment);
+      setName('');
       setComment('');
     }
   };
@@ -18,6 +17,13 @@ const CommentSection: React.FC<CommentSectionProps> = ({ onCommentSubmit }) => {
     <div className="mt-5">
       <h2 className="text-xl font-bold mb-3">Comments</h2>
       <div>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Your Name"
+          className="w-full p-2 border border-gray-300 rounded mb-2"
+        />
         <textarea
           value={comment}
           onChange={(e) => setComment(e.target.value)}

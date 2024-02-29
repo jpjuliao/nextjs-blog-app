@@ -1,17 +1,13 @@
 import React, { useState } from 'react';
-
-interface SearchBarProps {
-  onSearch: (query: string) => void;
-}
+import { SearchBarProps } from '@/types'
 
 const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   const [searchQuery, setSearchQuery] = useState<string>('');
 
-  // Function to handle search query change
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const query = event.target.value;
     setSearchQuery(query);
-    onSearch(query); // Notify parent component of search query change
+    onSearch(query);
   };
 
   return (

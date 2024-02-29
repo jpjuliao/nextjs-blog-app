@@ -1,11 +1,6 @@
 import Link from 'next/link';
 import styles from './PostCard.module.css';
-
-interface Post {
-  id: number;
-  title: string;
-  body: string;
-}
+import { Post } from '@/types'
 
 const PostCard: React.FC<{ post: Post }> = ({ post }) => {
   const summary = post.body.split(' ').slice(0, 50).join(' ');

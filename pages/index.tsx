@@ -2,13 +2,7 @@ import { useState, useEffect } from 'react';
 import Layout from '../app/layout';
 import PostCard from '../components/PostCard';
 import SearchBar from '../components/SearchBar';
-
-interface Post {
-  userId: number;
-  id: number;
-  title: string;
-  body: string;
-}
+import { Post } from '../types'
 
 const HomePage: React.FC = () => {
   const [posts, setPosts] = useState<Post[]>([]);
