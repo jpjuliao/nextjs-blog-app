@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
+import Head from 'next/head';
 import Layout from '../app/layout';
 import PostCard from '../components/PostCard';
 import SearchBar from '../components/SearchBar';
-import { Post } from '../types'
+import { Post } from '../types';
 
 const HomePage: React.FC = () => {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -25,6 +26,10 @@ const HomePage: React.FC = () => {
 
   return (
     <Layout>
+      <Head>
+        <title>NextJS Blog Demo By Juan Pablo Juliao</title>
+        <meta name="description" content="Explore a collection of blog posts on various topics." />
+      </Head>
       <div className="container px-5 mx-auto">
         <h1 className="text-2xl py-5">Blog Posts</h1>
         <SearchBar onSearch={handleSearchChange} />
